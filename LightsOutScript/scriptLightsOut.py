@@ -7,8 +7,6 @@ def gauss_elimination_binary(a_matrix, b_matrix):
         print("ERROR: La matriz no es cuadrada")
         return
     if b_matrix.shape[0] != a_matrix.shape[0]:
-        print(b_matrix.shape[0])
-        print(a_matrix.shape[0])
         print("ERROR: El vector constante tiene tamaño incorrecto")
         return
 
@@ -55,11 +53,10 @@ def gauss_elimination_binary(a_matrix, b_matrix):
 def lightsOutSolver(matrix):
     n = matrix.shape[0]
 
-
-# Crear la matriz de coeficientes A de tamaño n*n por n*n, inicializada en ceros
+    # Crear la matriz de coeficientes A de tamaño n*n por n*n, inicializada en ceros
     a_matrix = np.zeros((n * n, n * n), dtype=int)
 
-# Iterar sobre cada posición (i, j) en la matriz del juego
+    # Iterar sobre cada posición (i, j) en la matriz del juego
     for i in range(n):
         for j in range(n):
             # Calcular el índice lineal que corresponde a la posición (i, j) en una matriz 1D
@@ -74,32 +71,40 @@ def lightsOutSolver(matrix):
 
             # Verificar si la luz tiene un vecino en la fila de arriba
             if i > 0:  # Si no estamos en la primera fila
-                # El vecino de arriba está en la posición (i-1, j), cuyo índice es (index - n)
                 vecino_arriba_index = index - n
                 a_matrix[index, vecino_arriba_index] = 1
 
             # Verificar si la luz tiene un vecino en la fila de abajo
             if i < n - 1:  # Si no estamos en la última fila
-                # El vecino de abajo está en la posición (i+1, j), cuyo índice es (index + n)
                 vecino_abajo_index = index + n
                 a_matrix[index, vecino_abajo_index] = 1
 
             # Verificar si la luz tiene un vecino a la izquierda
             if j > 0:  # Si no estamos en la primera columna
-                # El vecino de la izquierda está en la posición (i, j-1), cuyo índice es (index - 1)
                 vecino_izquierda_index = index - 1
                 a_matrix[index, vecino_izquierda_index] = 1
 
             # Verificar si la luz tiene un vecino a la derecha
             if j < n - 1:  # Si no estamos en la última columna
-                # El vecino de la derecha está en la posición (i, j+1), cuyo índice es (index + 1)
                 vecino_derecha_index = index + 1
                 a_matrix[index, vecino_derecha_index] = 1
-        constant_matrix = matrix.flatten()
-        print(matrix)
-        print(constant_matrix)
 
-        solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
-        solution_matrix = solution_vector.reshape(n, n)
-        print("\nSolucion encontrada (matriz):")
-        print(solution_matrix)
+    # Aplanar la matriz de entrada para obtener el vector de términos constantes
+    constant_matrix = matrix.flatten()
+    print("Matriz del juego (inicial):")
+    print(matrix)
+    print("Vector de términos constantes:")
+    print(constant_matrix)
+
+    # Resolver el sistema de ecuaciones usando eliminación gaussiana binaria
+    solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
+
+    # Convertir el vector de solución en una matriz
+    solution_matrix = solution_vector.reshape(n, n)
+    print("\nSolucion encontrada (matriz):")
+    print(solution_matrix)
+
+    print("\nSolucion encontrada (vector):")
+    print(solution_vector)
+
+    return solution_matrix
