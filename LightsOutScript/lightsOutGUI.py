@@ -45,13 +45,6 @@ class LightsOutGame:
                 else:
                     self.buttons[i][j].config(bg='green')  # Apagado
 
-    def check_win(self):
-        """Verifica si el jugador ha ganado (todas las luces apagadas)"""
-        if np.all(self.board == 1):
-            win_label = tk.Label(
-                self.root, text="¡Ganaste!", font=("Arial", 20))
-            win_label.grid(row=self.size, columnspan=self.size)
-
 
 # Crear la ventana principal de Tkinter
 root = tk.Tk()

@@ -16,8 +16,6 @@ def gauss_elimination_binary(a_matrix, b_matrix):
     n = len(b_matrix)
     augmented_matrix = np.concatenate(
         (a_matrix, b_matrix.reshape(-1, 1)), axis=1)  # Matriz ampliada
-    print("Matriz ampliada inicial:")
-    print(augmented_matrix)
 
     # Escalonamiento Gaussiano modificado
     for i in range(n):
@@ -35,9 +33,6 @@ def gauss_elimination_binary(a_matrix, b_matrix):
                 # XOR entre filas
                 augmented_matrix[j] = augmented_matrix[j] ^ augmented_matrix[i]
 
-    print("\nMatriz después del escalonamiento:")
-    print(augmented_matrix)
-
     # Sustitución hacia atrás para encontrar la solución
     x = np.zeros(n, dtype=int)
     for i in range(n - 1, -1, -1):
@@ -45,9 +40,6 @@ def gauss_elimination_binary(a_matrix, b_matrix):
         for j in range(i + 1, n):
             # XOR para eliminar variables conocidas
             x[i] = x[i] ^ (augmented_matrix[i, j] * x[j])
-
-    print("\nSolucion encontrada (vector x):")
-    print(x)
 
     return x
 
@@ -96,10 +88,9 @@ def lightsOutSolver(matrix):
                 vecino_derecha_index = index + 1
                 a_matrix[index, vecino_derecha_index] = 1
         constant_matrix = matrix.flatten()
-        print(matrix)
-        print(constant_matrix)
 
         solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
         solution_matrix = solution_vector.reshape(n, n)
-        print("\nSolucion encontrada (matriz):")
-        print(solution_matrix)
+    print("\nSolucion encontrada (matriz):")
+    for i in range(n):
+        print("fila " + str(i+1), solution_matrix[i])
