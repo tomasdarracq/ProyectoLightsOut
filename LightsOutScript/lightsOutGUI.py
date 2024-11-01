@@ -17,7 +17,6 @@ class LightsOutGame:
         for i in range(size):
             for j in range(size):
                 button = tk.Button(
-
                     root, width=10, height=4, command=lambda i=i, j=j: self.toggle_lights(i, j))
                 button.grid(row=i, column=j)
                 self.buttons[i][j] = button
@@ -45,13 +44,24 @@ class LightsOutGame:
                 else:
                     self.buttons[i][j].config(bg='green')  # Apagado
 
+        # Verificar si todas las luces están encendidas (todos los valores de la matriz son 1)
+        if np.all(self.board == 0):
+            print("¡Ganaste! Todas las luces están encendidas.")
+            self.show_win_message()
+
+    def show_win_message(self):
+        """Mostrar un mensaje de victoria en la interfaz"""
+        win_label = tk.Label(
+            self.root, text="¡Ganaste! Todas las luces están encendidas.", fg="blue", font=("Helvetica", 16))
+        win_label.grid(row=self.size, column=0, columnspan=self.size)
+
 
 # Crear la ventana principal de Tkinter
 root = tk.Tk()
 root.title("Lights Out")
 
 # Tamaño del tablero (por ejemplo, 5x5)
-game = LightsOutGame(root, 10)
+game = LightsOutGame(root, 3)
 
 # Iniciar el loop principal de Tkinter
 root.mainloop()

@@ -80,7 +80,6 @@ def lightsOutSolver(matrix):
             if j < n - 1:  # Si no estamos en la última columna
                 vecino_derecha_index = index + 1
                 a_matrix[index, vecino_derecha_index] = 1
-<<<<<<< HEAD
         constant_matrix = matrix.flatten()
 
         solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
@@ -88,25 +87,3 @@ def lightsOutSolver(matrix):
     print("\nSolucion encontrada (matriz):")
     for i in range(n):
         print("fila " + str(i+1), solution_matrix[i])
-=======
-
-    # Aplanar la matriz de entrada para obtener el vector de términos constantes
-    constant_matrix = matrix.flatten()
-    print("Matriz del juego (inicial):")
-    print(matrix)
-    print("Vector de términos constantes:")
-    print(constant_matrix)
-
-    # Resolver el sistema de ecuaciones usando eliminación gaussiana binaria
-    solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
-
-    # Convertir el vector de solución en una matriz
-    solution_matrix = solution_vector.reshape(n, n)
-    print("\nSolucion encontrada (matriz):")
-    print(solution_matrix)
-
-    print("\nSolucion encontrada (vector):")
-    print(solution_vector)
-
-    return solution_matrix
->>>>>>> 124902e6872b1e301cdaa10ba37eb704c5337ec0
