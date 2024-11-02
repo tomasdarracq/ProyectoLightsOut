@@ -61,7 +61,7 @@ root = tk.Tk()
 root.title("Lights Out")
 
 # Tamaño del tablero
-game = LightsOutGame(root, 3)
+game = LightsOutGame(root, 10)
 
 # Iniciar el loop principal de Tkinter
 root.mainloop()
