@@ -43,6 +43,8 @@ def gauss_elimination_binary(a_matrix, b_matrix):
 
 
 def lightsOutSolver(matrix):
+    print("Matriz de entrada:")
+    print(matrix)
     n = matrix.shape[0]
 
     # Crear la matriz de coeficientes A de tamaño n*n por n*n, inicializada en ceros
@@ -58,7 +60,7 @@ def lightsOutSolver(matrix):
             # que representa la luz en la posición (i, j)
             a_matrix[index, index] = 1
 
-            # Ahora, necesitamos marcar los vecinos (arriba, abajo, izquierda, derecha)
+            # Marcar los vecinos (arriba, abajo, izquierda, derecha)
             # Si el vecino está dentro de los límites del tablero, ponemos un 1 en su posición correspondiente
 
             # Verificar si la luz tiene un vecino en la fila de arriba
@@ -84,6 +86,8 @@ def lightsOutSolver(matrix):
 
         solution_vector = gauss_elimination_binary(a_matrix, constant_matrix)
         solution_matrix = solution_vector.reshape(n, n)
+    print("\nSolucion encontrada (vector):")
+    print(solution_vector)
     print("\nSolucion encontrada (matriz):")
     for i in range(n):
         print("fila " + str(i+1), solution_matrix[i])

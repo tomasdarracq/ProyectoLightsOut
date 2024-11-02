@@ -50,7 +50,7 @@ class LightsOutGame:
             self.show_win_message()
 
     def show_win_message(self):
-        """Mostrar un mensaje de victoria en la interfaz"""
+        # Mostar mensaje que gano
         win_label = tk.Label(
             self.root, text="¡Ganaste! Todas las luces están encendidas.", fg="blue", font=("Helvetica", 16))
         win_label.grid(row=self.size, column=0, columnspan=self.size)
@@ -60,7 +60,7 @@ class LightsOutGame:
 root = tk.Tk()
 root.title("Lights Out")
 
-# Tamaño del tablero (por ejemplo, 5x5)
+# Tamaño del tablero
 game = LightsOutGame(root, 3)
 
 # Iniciar el loop principal de Tkinter
